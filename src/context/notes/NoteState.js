@@ -2,28 +2,122 @@ import NoteContext from "./noteContext";
 import { useState } from "react";
 
 const NoteState = (props) => {
-    // const state = {
-    //     "name": "Harry",
-    //     "class": "5g"
-    // }
 
-    const s1 = {
-        "name": "Harry",
-        "class": "3g"
-    }       
-    const [state, setState] = useState(s1)
+    const n = [
+        {
+          "_id": "62cebf1da13a963571590eab",
+          "user": "62caab060d1f2205ce96741a",
+          "title": "First title",
+          "description": "First Description",
+          "tag": "First tag",
+          "date": "2022-07-13T12:48:29.442Z",
+          "__v": 0
+        },
+        {
+            "_id": "62cebf1da13a963571590eab",
+            "user": "62caab060d1f2205ce96741a",
+            "title": "second title",
+            "description": "First Description",
+            "tag": "First tag",
+            "date": "2022-07-13T12:48:29.442Z",
+            "__v": 0
+        },
+        {
+          "_id": "62cebf1da13a963571590eab",
+          "user": "62caab060d1f2205ce96741a",
+          "title": "First title",
+          "description": "First Description",
+          "tag": "First tag",
+          "date": "2022-07-13T12:48:29.442Z",
+          "__v": 0
+        },
+        {
+            "_id": "62cebf1da13a963571590eab",
+            "user": "62caab060d1f2205ce96741a",
+            "title": "second title",
+            "description": "First Description",
+            "tag": "First tag",
+            "date": "2022-07-13T12:48:29.442Z",
+            "__v": 0
+        },
+        {
+          "_id": "62cebf1da13a963571590eab",
+          "user": "62caab060d1f2205ce96741a",
+          "title": "First title",
+          "description": "First Description",
+          "tag": "First tag",
+          "date": "2022-07-13T12:48:29.442Z",
+          "__v": 0
+        },
+        {
+            "_id": "62cebf1da13a963571590eab",
+            "user": "62caab060d1f2205ce96741a",
+            "title": "second title",
+            "description": "First Description",
+            "tag": "First tag",
+            "date": "2022-07-13T12:48:29.442Z",
+            "__v": 0
+        },
+        {
+          "_id": "62cebf1da13a963571590eab",
+          "user": "62caab060d1f2205ce96741a",
+          "title": "First title",
+          "description": "First Description",
+          "tag": "First tag",
+          "date": "2022-07-13T12:48:29.442Z",
+          "__v": 0
+        },
+        {
+            "_id": "62cebf1da13a963571590eab",
+            "user": "62caab060d1f2205ce96741a",
+            "title": "second title",
+            "description": "First Description",
+            "tag": "First tag",
+            "date": "2022-07-13T12:48:29.442Z",
+            "__v": 0
+        },
+        {
+          "_id": "62cebf1da13a963571590eab",
+          "user": "62caab060d1f2205ce96741a",
+          "title": "First title",
+          "description": "First Description",
+          "tag": "First tag",
+          "date": "2022-07-13T12:48:29.442Z",
+          "__v": 0
+        },
+        {
+            "_id": "62cebf1da13a963571590eab",
+            "user": "62caab060d1f2205ce96741a",
+            "title": "second title",
+            "description": "First Description",
+            "tag": "First tag",
+            "date": "2022-07-13T12:48:29.442Z",
+            "__v": 0
+        },
+        {
+          "_id": "62cebf1da13a963571590eab",
+          "user": "62caab060d1f2205ce96741a",
+          "title": "First title",
+          "description": "First Description",
+          "tag": "First tag",
+          "date": "2022-07-13T12:48:29.442Z",
+          "__v": 0
+        },
+        {
+            "_id": "62cebf1da13a963571590eab",
+            "user": "62caab060d1f2205ce96741a",
+            "title": "second title",
+            "description": "First Description",
+            "tag": "First tag",
+            "date": "2022-07-13T12:48:29.442Z",
+            "__v": 0
+        },
+      ]       
+    const [notes, setNotes] = useState(n)
     
-    const update = ()=>{
-        setTimeout(() => {
-            setState({
-                "name": "Raj",
-                "class": "5g"
-            })
-        }, 1000);
-    }
 
     return (
-        <NoteContext.Provider value={{state, update}}>
+        <NoteContext.Provider value={{notes, setNotes}}>
             {props.children}
         </NoteContext.Provider>
     )
