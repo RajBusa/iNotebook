@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useContext } from 'react';
 import noteContext from '../context/notes/noteContext';
 import AddNote from './AddNote';
@@ -6,8 +7,11 @@ import NoteItem from './NoteItem';
 
 const Notes = () => {
   const a = useContext(noteContext)
-  const {notes} = a;
+  const {notes, getNotes} = a;
   // console.log(notes)
+  useEffect(() => {
+    getNotes()
+  }, [])
   return (
     <>
       <AddNote />

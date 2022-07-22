@@ -6,7 +6,7 @@ const NoteItem = (props) => {
   const a = useContext(noteContext)
   const {deleteNote} = a;
   const note = props.note
-  console.log(note)
+  // console.log(note)
   return (
     <div className="col-md-3 my-1">
       <div className="card">
