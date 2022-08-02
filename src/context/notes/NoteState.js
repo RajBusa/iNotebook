@@ -47,6 +47,7 @@ const NoteState = (props) => {
           "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjJjYWFiMDYwZDFmMjIwNWNlOTY3NDFhIn0sImlhdCI6MTY1NzQ1MjExNH0.7ikMZvuY_TzAfOAWGqIWuSxrMZV1W_YSRCNSOoatGf4"
         }
       });
+      console.log(response)
       console.log("Delete Note " + id)
       const newNotes = notes.filter((note) => {return note._id !== id})
       setNotes(newNotes)
@@ -63,6 +64,7 @@ const NoteState = (props) => {
           body: JSON.stringify({title, description, tag})
         });
         const json = response.json();
+        console.log(json)
         
 
       let newNote = JSON.parse(JSON.stringify(notes))

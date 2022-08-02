@@ -15,6 +15,7 @@ router.post('/createuser', [
     body('email', 'Enter a valid email').isEmail(),
     body('password', 'Password must have 5 character').isLength({ min: 5 }),
 ] , async (req, res)=>{
+    let success = false
     // obj = {
     //     name: "Raj",
     //     number: 458
@@ -27,7 +28,7 @@ router.post('/createuser', [
     // If there are error, return bad request and the error 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({success, errors: errors.array() });
     }
 
     // 
@@ -56,11 +57,12 @@ router.post('/createuser', [
         }
         const jwtData = jwt.sign(data, JWT_SECRET)
         console.log(jwtData)
-        res.json({jwtData})
+        success = true
+        res.json({success, jwtData})
         // res.send(user)
     } catch (error) {
         console.log(error.message)
-        res.status(500).json({error: "some error exists"})
+        res.status(500).json({success, error: "some error exists"})
     }
     
 });
@@ -70,11 +72,11 @@ router.post('/login', [
     body('email', 'Enter a valid email').isEmail(),
     body('password', 'Password cannot be blank').exists()
 ] , async (req, res)=>{
-
+    let success = false
     // If there are error, return bad request and the error 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({success, errors: errors.array() });
     }
 
     const {email, password} = req.body;
@@ -83,13 +85,13 @@ router.post('/login', [
         let user = await User.findOne({email})
     
         if(!user){
-            return res.status(400).json({message: "Please try to login with correct credentials"});
+            return res.status(400).json({success, message: "Please try to login with correct credentials"});
         }
     
         const passwordCompare = await bcrypt.compare(password, user.password)
         // console.log(passwordCompare)
         if(!passwordCompare){
-            return res.status(400).json({message: "Please try to login with correct credentials"});
+            return res.status(400).json(success, {message: "Please try to login with correct credentials"});
         }
 
         const data = {
@@ -97,11 +99,12 @@ router.post('/login', [
                 id:user.id
             }
         }
+        success = true
         const jwtData = jwt.sign(data, JWT_SECRET)
-        res.json({jwtData})
+        res.json({success, jwtData})
     } catch (error) {
         console.log(error.message)
-        res.status(500).json({error: "Internal server error"})
+        res.status(500).json({success, error: "Internal server error"})
     }
     
 });
