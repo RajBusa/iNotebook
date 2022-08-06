@@ -6,12 +6,13 @@ import noteContext from '../context/notes/noteContext'
 import AddNote from './AddNote'
 import NoteItem from './NoteItem'
 
-const Notes = () => {
+const Notes = (props) => {
   const a = useContext(noteContext)
   const { notes, getNotes, editNote } = a
   // console.log(notes)
   useEffect(() => {
     getNotes()
+    // eslint-disable-next-line
   }, []);
   
   const ref = useRef(null);
@@ -19,7 +20,7 @@ const Notes = () => {
   const [note, setNote] = useState({id: "", etitle: "", edescription: "", etag: ""});
 
   const updateNote = (currentNote) => {
-    ref.current.click();
+    ref.current.click();  
     setNote({id: currentNote._id, etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag})
   }
 
@@ -28,6 +29,7 @@ const Notes = () => {
     editNote(note.id, note.etitle, note.edescription, note.etag)
     refClose.current.click();
     // addNote(note.title,note.description,note.tag)
+    props.showAlert("Note Updated Successfully", "success");
   }
 
   const onChange = (e)=>{
@@ -83,10 +85,10 @@ const Notes = () => {
           </div>
         </div>
       </div>
-      <AddNote />
+      <AddNote showAlert={props.showAlert}/>
       <div className="row">
         {notes.map((note) => {
-          return <NoteItem key={note._id} note={note} updateNote={updateNote}/>
+          return <NoteItem key={note._id} note={note} updateNote={updateNote} showAlert={props.showAlert}/>
         })}
       </div>
     </>
