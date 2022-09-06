@@ -54,7 +54,7 @@ router.post('/createuser', [
             user:{
                 id:user.id
             }
-        }
+        }   
         const jwtData = jwt.sign(data, JWT_SECRET)
         console.log(jwtData)
         success = true
