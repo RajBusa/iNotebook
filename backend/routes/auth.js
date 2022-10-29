@@ -25,7 +25,7 @@ router.post('/createuser', [
     // const user = User(req.body)
     // user.save();
 
-    // If there are error, return bad request and the error 
+    // If there are error, return bad request and the error ()
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({success, errors: errors.array() });
